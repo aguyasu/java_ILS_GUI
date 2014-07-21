@@ -4,6 +4,8 @@ import java.awt.image.*;
 import java.io.*;
 import javax.imageio.*;
 
+
+
 class light{
     int no;
     int intensity;
@@ -20,13 +22,23 @@ class sensor{
         id = _id;
         pos = _pos;
     }
+    // public void get_info(sensor[] _sensor)
+    // {
+
+    //     _sensor[].id = id;
+    //     _sensor[].pos = pos;
+    // }
+
 }
 
 public class Main{
     static public void main(String args[]){
+    int light_num =15;
+    int sensor_num =3;
+    int[] sensor_pos = new int[sensor_num];
+
 
             int i=0;
-
             // int init_cd = 1000;
             // int random_cd = (int)((Math.random()*1000000)%1001/10);
             // light light1 = new light(1,init_cd);
@@ -52,6 +64,16 @@ public class Main{
             frame.setSize(795,900); //サイズ設定
             frame.setVisible(true); //表示
 
+            sensor[] sensors = new sensor[sensor_num];
+            for(i=0;i<sensor_num;i++){
+                sensors[i] = new sensor(i,(int)(Math.random()*10000%100));
+                sensor_pos[i] = sensors[i].pos;
+            }
+
+            canvas.set_sensor_pos(sensor_pos);
+
+
+
         while(true){
             try{
                 Thread.sleep(200);
@@ -73,12 +95,23 @@ class AppCanvas extends Canvas{
     BufferedImage image_100;
     BufferedImage image_light;
     BufferedImage image_sensor;
+    int i =0, j=0,count=0;
+
+    public int sensor_num = 3;
+    public int light_num = 15;
+    int[] sensor_pos = new int[sensor_num];
+
 
     //コンストラクタ
-    AppCanvas(){
+     AppCanvas(){
         image_kc111=loadImage("kc111.png");
         image_light=loadImage("light.png");
         image_sensor=loadImage("sensor.png");
+    }
+    void set_sensor_pos(int[] _pos){
+        for(i=0;i<sensor_num;i++){
+            sensor_pos[i] = _pos[i];
+        }
     }
 
     //イメージをファイルから読み込む
@@ -99,6 +132,7 @@ class AppCanvas extends Canvas{
     public void paint(Graphics g){
         int x1,x2,x3,x4,x5,x6,y1,y2,y3,y4,y5;
         int r,sensor_x,sensor_y;
+
         x1 = 100;
         x2 = 230;
         x3 = 360;
@@ -110,19 +144,19 @@ class AppCanvas extends Canvas{
         y3 = 340;
         y4 = 460;
         y5 = 580;
+        int init_cd = 1000;
+        int random_cd =0;
 
-        sensor  sensor1 = new sensor(1,10);
-        sensor  sensor2 = new sensor(2,56);
-        sensor  sensor3 = new sensor(3,78);
+        // sensor  sensor1 = new sensor(1,10);
+        // sensor  sensor2 = new sensor(2,56);
+        // sensor  sensor3 = new sensor(3,78);
 
-
+        sensor[] sensors = new sensor[sensor_num];
 
         g.drawImage(image_kc111,0,0,this);
         g.setColor(Color.ORANGE);
         int tmp_cd=0;
 
-        int init_cd = 1000;
-        int random_cd =0;
         random_cd = (int)((Math.random()*1000000)%701)+300;
         light light1 = new light(1,random_cd);
         random_cd = (int)((Math.random()*1000000)%701)+300;
@@ -171,18 +205,21 @@ class AppCanvas extends Canvas{
         g.fillOval(x6-light15.intensity/10,y4-light15.intensity/10,light15.intensity/10*2,light15.intensity/10*2);
 
 
-        sensor_x =39+65*(int)(sensor1.pos/9);
-        sensor_y =40+61*(int)(sensor1.pos%9);
-        g.drawImage(image_sensor,sensor_x,sensor_y,this);
-        sensor_x =39+65*(int)(sensor2.pos/9);
-        sensor_y =40+61*(int)(sensor2.pos%9);
-        g.drawImage(image_sensor,sensor_x,sensor_y,this);
-        sensor_x =39+65*(int)(sensor3.pos/9);
-        sensor_y =40+61*(int)(sensor3.pos%9);
-        g.drawImage(image_sensor,sensor_x,sensor_y,this);
-        // g.drawImage(image_sensor,39+66*10,40,this);
-        // g.drawImage(image_sensor,40,40+61*8,this);
+        for(int i =0;i<sensor_num;i++){
+            sensor_x =39+65*(int)(sensor_pos[i]/9);
+            sensor_y =40+61*(int)(sensor_pos[i]%9);
+            g.drawImage(image_sensor,sensor_x,sensor_y,this);
+        }
 
+        // sensor_x =39+65*(int)(sensor1.pos/9);
+        // sensor_y =40+61*(int)(sensor1.pos%9);
+        // g.drawImage(image_sensor,sensor_x,sensor_y,this);
+        // sensor_x =39+65*(int)(sensor2.pos/9);
+        // sensor_y =40+61*(int)(sensor2.pos%9);
+        // g.drawImage(image_sensor,sensor_x,sensor_y,this);
+        // sensor_x =39+65*(int)(sensor3.pos/9);
+        // sensor_y =40+61*(int)(sensor3.pos%9);
+        // g.drawImage(image_sensor,sensor_x,sensor_y,this);
 
     }
 }
