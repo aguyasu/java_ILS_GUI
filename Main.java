@@ -5,11 +5,20 @@ import java.io.*;
 import javax.imageio.*;
 
 class light{
-    int No;
+    int no;
     int intensity;
     light(int _no,int _intensity){
-        No = _no;
+        no = _no;
         intensity = _intensity;
+    }
+}
+
+class sensor{
+    int id;
+    int pos;
+    sensor(int _id,int _pos){
+        id = _id;
+        pos = _pos;
     }
 }
 
@@ -59,15 +68,17 @@ public class Main{
 // 表示用のキャンパス
 // --------------
 class AppCanvas extends Canvas{
-    BufferedImage image; //ウィンドウ表示するイメージ
+    BufferedImage image_kc111; //ウィンドウ表示するイメージ
     BufferedImage image_20;
     BufferedImage image_100;
     BufferedImage image_light;
+    BufferedImage image_sensor;
 
     //コンストラクタ
     AppCanvas(){
-        image=loadImage("kc111.png");
+        image_kc111=loadImage("kc111.png");
         image_light=loadImage("light.png");
+        image_sensor=loadImage("sensor.png");
     }
 
     //イメージをファイルから読み込む
@@ -87,7 +98,7 @@ class AppCanvas extends Canvas{
     }
     public void paint(Graphics g){
         int x1,x2,x3,x4,x5,x6,y1,y2,y3,y4,y5;
-        int r;
+        int r,sensor_x,sensor_y;
         x1 = 100;
         x2 = 230;
         x3 = 360;
@@ -100,7 +111,12 @@ class AppCanvas extends Canvas{
         y4 = 460;
         y5 = 580;
 
-        g.drawImage(image,0,0,this);
+        sensor sensor1 = new sensor(1,10);
+        sensor_x =sensor1.pos/9;
+        sensor_y =seonsr1.pos/
+
+
+        g.drawImage(image_kc111,0,0,this);
         g.setColor(Color.ORANGE);
         int tmp_cd=0;
 
@@ -152,6 +168,12 @@ class AppCanvas extends Canvas{
         g.fillOval(x5-light13.intensity/10,y5-light13.intensity/10,light13.intensity/10*2,light13.intensity/10*2);
         g.fillOval(x6-light14.intensity/10,y2-light14.intensity/10,light14.intensity/10*2,light14.intensity/10*2);
         g.fillOval(x6-light15.intensity/10,y4-light15.intensity/10,light15.intensity/10*2,light15.intensity/10*2);
+
+
+        g.drawImage(image_sensor,40,40,this);
+        g.drawImage(image_sensor,39+66*10,40,this);
+        g.drawImage(image_sensor,40,40+61*8,this);
+
 
     }
 }
