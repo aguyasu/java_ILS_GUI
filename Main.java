@@ -111,9 +111,10 @@ class AppCanvas extends Canvas{
         y4 = 460;
         y5 = 580;
 
-        sensor sensor1 = new sensor(1,10);
-        sensor_x =sensor1.pos/9;
-        sensor_y =seonsr1.pos/
+        sensor  sensor1 = new sensor(1,10);
+        sensor  sensor2 = new sensor(2,56);
+        sensor  sensor3 = new sensor(3,78);
+
 
 
         g.drawImage(image_kc111,0,0,this);
@@ -170,9 +171,17 @@ class AppCanvas extends Canvas{
         g.fillOval(x6-light15.intensity/10,y4-light15.intensity/10,light15.intensity/10*2,light15.intensity/10*2);
 
 
-        g.drawImage(image_sensor,40,40,this);
-        g.drawImage(image_sensor,39+66*10,40,this);
-        g.drawImage(image_sensor,40,40+61*8,this);
+        sensor_x =39+65*(int)(sensor1.pos/9);
+        sensor_y =40+61*(int)(sensor1.pos%9);
+        g.drawImage(image_sensor,sensor_x,sensor_y,this);
+        sensor_x =39+65*(int)(sensor2.pos/9);
+        sensor_y =40+61*(int)(sensor2.pos%9);
+        g.drawImage(image_sensor,sensor_x,sensor_y,this);
+        sensor_x =39+65*(int)(sensor3.pos/9);
+        sensor_y =40+61*(int)(sensor3.pos%9);
+        g.drawImage(image_sensor,sensor_x,sensor_y,this);
+        // g.drawImage(image_sensor,39+66*10,40,this);
+        // g.drawImage(image_sensor,40,40+61*8,this);
 
 
     }
