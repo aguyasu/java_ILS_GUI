@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.*;
+<<<<<<< HEAD
 import javax.swing.*;
 import java.io.*;
 import javax.imageio.*;
@@ -17,10 +18,21 @@ class light{
     int intensity;
     light(int _no,int _intensity){
         no = _no;
+=======
+import java.io.*;
+import javax.imageio.*;
+
+class light{
+    int No;
+    int intensity;
+    light(int _no,int _intensity){
+        No = _no;
+>>>>>>> 9541d4d92e333bd5312204929d0e8e3ddc6c7415
         intensity = _intensity;
     }
 }
 
+<<<<<<< HEAD
 class sensor{
     int id;
     int pos;
@@ -43,6 +55,13 @@ public class Main{
     int sensor_num =3;
     int[] sensor_pos = new int[sensor_num];
     int i=0;
+=======
+public class Main{
+    static public void main(String args[]){
+
+            int i=0;
+
+>>>>>>> 9541d4d92e333bd5312204929d0e8e3ddc6c7415
             // int init_cd = 1000;
             // int random_cd = (int)((Math.random()*1000000)%1001/10);
             // light light1 = new light(1,init_cd);
@@ -68,6 +87,7 @@ public class Main{
             frame.setSize(795,900); //サイズ設定
             frame.setVisible(true); //表示
 
+<<<<<<< HEAD
             sensor[] sensors = new sensor[sensor_num];
             for(i=0;i<sensor_num;i++){
                 sensors[i] = new sensor(i,(int)(Math.random()*10000%100));
@@ -77,6 +97,8 @@ public class Main{
             canvas.set_sensor_pos(sensor_pos);
 
 
+=======
+>>>>>>> 9541d4d92e333bd5312204929d0e8e3ddc6c7415
         while(true){
             try{
                 Thread.sleep(200);
@@ -93,6 +115,7 @@ public class Main{
 // 表示用のキャンパス
 // --------------
 class AppCanvas extends Canvas{
+<<<<<<< HEAD
     BufferedImage image_kc111; //ウィンドウ表示するイメージ
     BufferedImage image_20;
     BufferedImage image_100;
@@ -115,6 +138,17 @@ class AppCanvas extends Canvas{
         for(i=0;i<sensor_num;i++){
             sensor_pos[i] = _pos[i];
         }
+=======
+    BufferedImage image; //ウィンドウ表示するイメージ
+    BufferedImage image_20;
+    BufferedImage image_100;
+    BufferedImage image_light;
+
+    //コンストラクタ
+    AppCanvas(){
+        image=loadImage("kc111.png");
+        image_light=loadImage("light.png");
+>>>>>>> 9541d4d92e333bd5312204929d0e8e3ddc6c7415
     }
 
     //イメージをファイルから読み込む
@@ -134,8 +168,12 @@ class AppCanvas extends Canvas{
     }
     public void paint(Graphics g){
         int x1,x2,x3,x4,x5,x6,y1,y2,y3,y4,y5;
+<<<<<<< HEAD
         int r,sensor_x,sensor_y;
 
+=======
+        int r;
+>>>>>>> 9541d4d92e333bd5312204929d0e8e3ddc6c7415
         x1 = 100;
         x2 = 230;
         x3 = 360;
@@ -147,6 +185,7 @@ class AppCanvas extends Canvas{
         y3 = 340;
         y4 = 460;
         y5 = 580;
+<<<<<<< HEAD
         int init_cd = 1000;
         int random_cd =0;
 
@@ -160,6 +199,15 @@ class AppCanvas extends Canvas{
         g.setColor(Color.ORANGE);
         int tmp_cd=0;
 
+=======
+
+        g.drawImage(image,0,0,this);
+        g.setColor(Color.ORANGE);
+        int tmp_cd=0;
+
+        int init_cd = 1000;
+        int random_cd =0;
+>>>>>>> 9541d4d92e333bd5312204929d0e8e3ddc6c7415
         random_cd = (int)((Math.random()*1000000)%701)+300;
         light light1 = new light(1,random_cd);
         random_cd = (int)((Math.random()*1000000)%701)+300;
@@ -207,6 +255,7 @@ class AppCanvas extends Canvas{
         g.fillOval(x6-light14.intensity/10,y2-light14.intensity/10,light14.intensity/10*2,light14.intensity/10*2);
         g.fillOval(x6-light15.intensity/10,y4-light15.intensity/10,light15.intensity/10*2,light15.intensity/10*2);
 
+<<<<<<< HEAD
         // JLabel label1 = new JLabel();
 
         // label1.setText("hogehoge");
@@ -236,6 +285,8 @@ class AppCanvas extends Canvas{
         // sensor_y =40+61*(int)(sensor3.pos%9);
         // g.drawImage(image_sensor,sensor_x,sensor_y,this);
 
+=======
+>>>>>>> 9541d4d92e333bd5312204929d0e8e3ddc6c7415
     }
 }
 
