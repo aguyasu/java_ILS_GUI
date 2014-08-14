@@ -1,9 +1,15 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.*;
+import javax.swing.*;
 import java.io.*;
 import javax.imageio.*;
-
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import java.awt.Container;
+import java.awt.Graphics;
+import java.awt.Font;
 
 
 class light{
@@ -36,9 +42,7 @@ public class Main{
     int light_num =15;
     int sensor_num =3;
     int[] sensor_pos = new int[sensor_num];
-
-
-            int i=0;
+    int i=0;
             // int init_cd = 1000;
             // int random_cd = (int)((Math.random()*1000000)%1001/10);
             // light light1 = new light(1,init_cd);
@@ -71,7 +75,6 @@ public class Main{
             }
 
             canvas.set_sensor_pos(sensor_pos);
-
 
 
         while(true){
@@ -204,12 +207,24 @@ class AppCanvas extends Canvas{
         g.fillOval(x6-light14.intensity/10,y2-light14.intensity/10,light14.intensity/10*2,light14.intensity/10*2);
         g.fillOval(x6-light15.intensity/10,y4-light15.intensity/10,light15.intensity/10*2,light15.intensity/10*2);
 
+        // JLabel label1 = new JLabel();
+
+        // label1.setText("hogehoge");
+        // g.add(label1);
+
 
         for(int i =0;i<sensor_num;i++){
             sensor_x =39+65*(int)(sensor_pos[i]/9);
             sensor_y =40+61*(int)(sensor_pos[i]%9);
             g.drawImage(image_sensor,sensor_x,sensor_y,this);
         }
+
+        Font f = new Font("Arial",Font.PLAIN,24);
+        g.setColor(Color.BLACK);
+        g.setFont(f);
+        // setBackground(Color.RED);
+        g.drawString("hoge",100,100);
+        g.drawString("hoge",100,100);
 
         // sensor_x =39+65*(int)(sensor1.pos/9);
         // sensor_y =40+61*(int)(sensor1.pos%9);
